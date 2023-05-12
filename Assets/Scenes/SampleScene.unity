@@ -203,8 +203,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59381687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.13262, z: 0}
+  m_LocalScale: {x: 0.37244, y: 0.37244, z: 0.37244}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -555,7 +555,7 @@ Transform:
   m_GameObject: {fileID: 637658030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4243, y: 1.4243, z: 1.4243}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -574,6 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   police: {fileID: 2277321166300656962, guid: b8c8c41e2bbddd84a8e30bf6ec90320d, type: 3}
+  circle: {fileID: 0}
   playerPos: {fileID: 59381689}
   numberOfPolice: 10
   minDistance: 0.5
@@ -581,6 +582,9 @@ MonoBehaviour:
   maxX: 8.68
   minY: -4.93
   maxY: 4.95
+  radius: 2
+  prefab: {fileID: 2277321166300656962, guid: b8c8c41e2bbddd84a8e30bf6ec90320d, type: 3}
+  center: {x: 0, y: 0}
 --- !u!1 &1057778401
 GameObject:
   m_ObjectHideFlags: 0

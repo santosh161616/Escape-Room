@@ -3,72 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PoliceSpawner : MonoBehaviour
-{
-    [SerializeField] GameObject police;
-    [SerializeField] Transform playerPos;
+{   
     [SerializeField] int numberOfPolice = 10;
     [SerializeField] float minDistance = 1f;
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
+
+    public float radius = 2f;    
+    public GameObject prefab;
+    public Vector2 center;
 
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            GenerateRandomPosition();           
-        }
-    }
-
-    public void GenerateRandomPosition()
-    {
-        Vector2[] randomPositions = new Vector2[numberOfPolice];
         for (int i = 0; i < numberOfPolice; i++)
         {
-            bool validPosition = false;
-            Vector2 newPosition = Vector2.zero;
+            Vector2 position = GetRandomPositionOutsideCircle();
+            Instantiate(prefab, position, Quaternion.identity);
+        }
+        
+    }
 
-            while (!validPosition)
-            {
-                newPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-
-                // Check if the new position is at least minDistance from all previous positions
-                bool distanceValid = true;
-                for (int j = 0; j < i; j++)
-                {
-                    if (Vector2.Distance(newPosition, randomPositions[j]) < minDistance)
-                    {
-                        distanceValid = false;
-                        break;
-                    }
-                }
-
-                // Check if the new position is different from the predefined position
-                bool skipValid = true;
-                if (playerPos != null)
-                {
-                    if (Vector2.Distance(newPosition, playerPos.position) < minDistance)
-                    {
-                        skipValid = false;
-                    }
-                }
-
-                validPosition = distanceValid && skipValid;
-            }
-
-            randomPositions[i] = newPosition;
-            Instantiate(police, randomPositions[i], transform.rotation);
-            Debug.DrawLine(playerPos.position, randomPositions[i], Color.green, 10f);
-            Debug.Log(randomPositions[i]);
-        }                
-
+    Vector2 GetRandomPositionOutsideCircle()
+    {
+        Vector2 position = new Vector2(Random.Range(center.x - radius - 1f, center.x + radius + 1f),
+                                       Random.Range(center.y - radius - 1f, center.y + radius + 1f));
+        while (Vector2.Distance(position, center) <= radius)
+        {
+            position = new Vector2(Random.Range(center.x - radius - 1f, center.x + radius + 1f),
+                                   Random.Range(center.y - radius - 1f, center.y + radius + 1f));
+        }
+        return position;
     }
 }
+
