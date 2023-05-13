@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PoliceSpawner : MonoBehaviour
 {   
-    [SerializeField] int numberOfPolice = 10;
-    [SerializeField] float minDistance = 3f;
+    [SerializeField] int numberOfPolice = 10;       //Number of police on the scene.
+    [SerializeField] float minDistance = 3f;        //Min distance to keep netween each police.
 
-    public float radius = 2f;    
-    public GameObject prefab;
-    public Vector2 center;
-    Vector2[] totalPositions;
+    public float radius = 2f;                       // All police should be spawned from a radius to theif
+    public GameObject prefab;                       // holding police prefab.
+    public Vector2 center;                          // theif position(center scene)
+    Vector2[] totalPositions;                       // Total number of police position.
 
-    float maxDistance = 0f;
-    Vector2 midPoint;
+    float maxDistance = 0f;                         // to hold the maximum distance between police (to find best run route)
+    Vector2 midPoint;                               // middle vector position (best run route)
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +22,16 @@ public class PoliceSpawner : MonoBehaviour
 
     private void Update()
     {
+
+        // Press space to generate random police.
         if (Input.GetKeyDown("space"))
         {
             TotoalNumberPositions();
         }
     }
 
+      
+    // Creating total possible random positions.
     public void TotoalNumberPositions()
     {
         Vector2[]  temp = new Vector2[numberOfPolice];
@@ -68,6 +72,8 @@ public class PoliceSpawner : MonoBehaviour
         }        
     }
 
+
+    // Generating a random positions from a radius to the theif.
     Vector2 GetRandomPositionOutsideCircle() {
         Vector2 position = new Vector2(Random.Range(center.x - radius - 1f, center.x + radius + 1f),
                                    Random.Range(center.y - radius - 1f, center.y + radius + 1f));
