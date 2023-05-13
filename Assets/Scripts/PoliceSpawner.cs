@@ -73,7 +73,7 @@ public class PoliceSpawner : MonoBehaviour
     }
 
 
-    // Generating a random positions from a radius to the theif.
+    // Generating a random positions from a radius to the thef.
     Vector2 GetRandomPositionOutsideCircle() {
         Vector2 position = new Vector2(Random.Range(center.x - radius - 1f, center.x + radius + 1f),
                                    Random.Range(center.y - radius - 1f, center.y + radius + 1f));
