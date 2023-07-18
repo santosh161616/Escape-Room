@@ -24,13 +24,13 @@ public class Theif : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         transform.position += new Vector3(horizontalInput, verticalInput) * moveSpeed * Time.deltaTime;
 
-        DrawLine();
+        //DrawLine();
     }
 
     // Drawing a line between the theif position to best run route. 
     public void DrawLine()
     {
         line.SetPosition(0, transform.position);
-        line.SetPosition(1, police.BestPath());
+        line.SetPosition(1, police.BestWay());
     }
 }
